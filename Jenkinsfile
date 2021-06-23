@@ -16,7 +16,7 @@ pipeline {
    steps {
        script {
           withSonarQubeEnv(credentialsId: 'jenkins-sonar-token') {
-             sh "mvn sonar:sonar -Dsonar.projectKey=afnor -Dsonar.sources=."
+             sh "mvn sonar:sonar -Dsonar.projectKey=afnor -Dsonar.sources=. -target 1.7"
     // some block
          }
  
