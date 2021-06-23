@@ -23,20 +23,26 @@ pipeline {
 
 
 
-    // stage('Deploy') {
-      //   steps {
-        //    script {
-          //     projectName = sh(script: "echo '${params.project_prefix}-${params.env}-${params.project_suffix}'", returnStdout: true).trim()
-            //}
-            //withEnv(["PROJECT_NAME=${projectName}"]) {
-               //withCredentials([file(credentialsId: "${projectName}", variable: 'GC_KEY')]) {
-                 // sh('gcloud auth activate-service-account --key-file=${GC_KEY} --project=${PROJECT_NAME}')
-                  //sh('gcloud config set project ${PROJECT_NAME}')
-                 // sh('cd src/main/appengine && gcloud app deploy -q')
-               //}
-            //}
-         //}
-      //}
+     stage('stop current version') {
+         steps {
+            sh "docker-compose -H tcp://192.168.26.145:2375 -f docker-compose.yml down "
+
+         }
+      }
+     stage('build docker image') {
+         steps {
+            sh "docker-compose -H tcp://192.168.26.145:2375 -f docker-compose.yml build "
+
+         }
+      }
+     stage('Deploy new version') {
+         steps {
+            sh "docker-compose -H tcp://192.168.26.145:2375 -f docker-compose.yml up -d "
+
+         }
+      }
+
+
 
 
    } // stages
