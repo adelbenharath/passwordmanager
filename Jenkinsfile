@@ -20,7 +20,7 @@ pipeline {
            -Dsonar.projectKey=afnor \
            -Dsonar.sources=. \
            -Dsonar.css.node=. \
-           -Dsonar.host.url=http:/192.168.1.132:9000 \
+           -Dsonar.host.url=http:/192.168.1.132:9000 
                }
            }
        
