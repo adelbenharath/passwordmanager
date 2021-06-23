@@ -1,0 +1,24 @@
+version: '2'
+services:
+  afnor:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: afnor
+    restart: always
+    ports:
+      - "8084:8080"
+    networks:
+      - afnor
+networks:
+  afnor:
+    driver: bridge
+    ipam:
+    #external: true
+     config:
+       - subnet: 172.55.0.0/16
+         gateway: 172.55.0.1
+
+
+
+            
