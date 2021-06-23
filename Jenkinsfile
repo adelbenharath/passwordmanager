@@ -16,6 +16,8 @@ pipeline {
       stage('Compile projects') {
          steps {
          sh "mvn clean install -DskipTests"
+         sh "cp target/passwordmanager-0.0.1-SNAPSHOT.jar afnor.jar"
+            
          }
       }
 
