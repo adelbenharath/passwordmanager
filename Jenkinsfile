@@ -12,6 +12,19 @@ pipeline {
             checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/adelbenharath/passwordmanager.git']]])
          }
       }
+   stage('Code Quality Check via SonarQube') {
+   steps {
+       script {
+       def scannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation';
+           sh "${tool("scannerHome")}/bin/sonar-scanner \
+           -Dsonar.projectKey=afnor \
+           -Dsonar.sources=. \
+           -Dsonar.css.node=. \
+           -Dsonar.host.url=http:/192.168.1.132:9000 \
+               }
+           }
+       
+   }
 
       stage('Compile projects') {
          steps {
