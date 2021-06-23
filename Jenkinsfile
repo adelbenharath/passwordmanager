@@ -16,7 +16,7 @@ pipeline {
    steps {
        script {
           withSonarQubeEnv(credentialsId: 'jenkins-sonar-token') {
-             sh "mvn clean package sonar:sonar -Dsonar.projectKey=afnor -Dsonar.sources=./src -Dsonar.sourceEncoding=UTF-8 "
+             sh "mvn clean package sonar:sonar -DskipTests -Dsonar.projectKey=afnor -Dsonar.sources=./src -Dsonar.sourceEncoding=UTF-8 -Dsonar.projectBaseDir=${WORKSPACE}"
     // some block
          }
  
