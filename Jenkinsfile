@@ -15,11 +15,13 @@ pipeline {
    stage('Code Quality Check via SonarQube') {
    steps {
        script {
+          withSonarQubeEnv(credentialsId: 'jenkins-sonar-token') {
+             sh "mvn sonar:sonar -Dsonar.projectKey=afnor -Dsonar.sources=."
+    // some block
+         }
  
-       def scannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation';
-            withEnv(["PROJECT_NAME=${scannerHome}"]) {
-           sh "/bin/sonar-scanner -Dsonar.projectKey=afnor -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.132:9000"
-               }
+           
+               
            }
     }
    }
