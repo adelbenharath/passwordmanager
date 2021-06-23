@@ -16,11 +16,7 @@ pipeline {
    steps {
        script {
        def scannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation';
-           sh "${tool("scannerHome")}/bin/sonar-scanner \
-           -Dsonar.projectKey=afnor \
-           -Dsonar.sources=. \
-           -Dsonar.css.node=. \
-           -Dsonar.host.url=http:/192.168.1.132:9000 
+           sh "${tool("scannerHome")}/bin/sonar-scanner -Dsonar.projectKey=afnor -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.132:9000 
                }
            }
        
